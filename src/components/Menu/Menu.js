@@ -4,7 +4,7 @@ import ingredients from "../../ingredients";
 import "./Menu.css";
 const Menu = () => {
   const {
-    /* Context'te bulunan ihtiyacımız olan state */
+    selectedIngredients,
     setSelectedIngredients,
     getCalculatedTotalPrice,
   } = useContext(HamburgerContext);
@@ -26,7 +26,7 @@ const Menu = () => {
   };
 
   const handleRemoveIngredient = (ingredient) => {
-    let ingredients = [ /* Seçilen malzemeler */];
+    let ingredients = [ingredient.cheese, ingredient.meat, ingredient.salad];
 
     const existIngredient = ingredients.find(
       (item) => item.name === ingredient.name
@@ -35,7 +35,8 @@ const Menu = () => {
     if (existIngredient) {
       if (existIngredient.count > 1) {
         existIngredient.count -= 1;
-      } else {
+      } 
+      else {
         ingredients = ingredients.filter(
           (item) => item.name !== existIngredient.name
         );
